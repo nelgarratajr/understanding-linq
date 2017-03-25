@@ -19,9 +19,13 @@ namespace UnderstandLINQ
                 new Car() { Make = "BMW", Model = "55i", Year = 2010, Color = CarColor.Yellow, StickerPrice = 57000 }
             };
 
-            foreach (var car in myCars)
+            var bmws = from car in myCars
+                       where car.Make == "BMW"
+                       select car;
+
+            foreach (var car in bmws)
             {
-                Console.WriteLine("Brand: {0} Model: {1}", car.Make, car.Model);
+                Console.WriteLine("Brand: {0} - Model: {1}", car.Make, car.Model);
             }
             Console.ReadLine();
         }
