@@ -19,13 +19,24 @@ namespace UnderstandLINQ
                 new Car() { Make = "BMW", Model = "55i", Year = 2010, Color = CarColor.Yellow, StickerPrice = 57000 }
             };
 
-            var bmws = from car in myCars
+            //LINQ query to display BMW cars with Sticker Price with value above 50k only
+            /*var bmws = from car in myCars
                        where car.Make == "BMW"
-                       select car;
+                       && car.StickerPrice > 50000
+                       //select car;
+                       select new { car.Make, car.Model, car.StickerPrice };*/
 
-            foreach (var car in bmws)
+            //LINQ query to sort the year
+            /*var orderedCars = from car in myCars
+                              orderby car.Year descending
+                              select car;*/
+
+            //alternative syntax instead of LINQ Query, this is called "Method syntax"
+            var _bmws = myCars.Where(p => p.StickerPrice > 50000).OrderByDescending(p => p.Year);
+
+            foreach (var car2 in _bmws)
             {
-                Console.WriteLine("Brand: {0} - Model: {1}", car.Make, car.Model);
+                Console.WriteLine("Brand: {0} - Model: {1} - Sticker Price: {2} - Year: {3}", car2.Make, car2.Model, car2.StickerPrice, car2.Year);
             }
             Console.ReadLine();
         }
